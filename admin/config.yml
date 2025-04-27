@@ -3,9 +3,6 @@ backend:
   repo: kajalvai0/symport
   branch: main
   
-media_folder: "uploads"
-public_folder: "/uploads"
-
 collections:
   - name: "pages"
     label: "Pages"
