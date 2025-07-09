@@ -1042,6 +1042,258 @@
                         </a>
                         <a href="#" class="text-gray-400 hover:text-white transition duration-300">
                             <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">দ্রুত লিংক</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">হোম</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">আমার সম্পর্কে</a></li>
+                        <li><a href="#constituency" class="text-gray-400 hover:text-white transition duration-300">আমার এলাকা</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">সেবা</a></li>
+                        <li><a href="#voice" class="text-gray-400 hover:text-white transition duration-300">আপনার কথা</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">সেবা</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">জরুরি সেবা</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">শিক্ষা ও বৃত্তি</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">চাকরি ও প্রশিক্ষণ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">স্বাস্থ্যসেবা</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">যোগাযোগ</h3>
+                    <div class="space-y-2">
+                        <p class="text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            ১২৩ নওগাঁ সদর রোড, নওগাঁ
+                        </p>
+                        <p class="text-gray-400">
+                            <i class="fas fa-phone mr-2"></i>
+                            +৮৮০ ১৭১২ ৩৪৫৬৭৮
+                        </p>
+                        <p class="text-gray-400">
+                            <i class="fas fa-envelope mr-2"></i>
+                            contact@advocateasmsaem.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © ২০২৩ এ্যাড. আ.স.ম সায়েম। সকল অধিকার সংরক্ষিত।
+                    </p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">গোপনীয়তা নীতি</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">শর্তাবলী</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">সাইটম্যাপ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="floating-btn" class="floating-btn bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition duration-300">
+            <i class="fas fa-comments text-xl"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and buttons
+                tabBtns.forEach(b => {
+                    b.classList.remove('active', 'text-blue-600', 'border-blue-600');
+                    b.classList.add('text-gray-600');
+                });
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and button
+                btn.classList.add('active', 'text-blue-600', 'border-blue-600');
+                btn.classList.remove('text-gray-600');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav', 'text-blue-600');
+                link.classList.add('text-gray-700');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-nav', 'text-blue-600');
+                    link.classList.remove('text-gray-700');
+                }
+            });
+        });
+
+        // Form submissions
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>জমা দেওয়া হচ্ছে...';
+                button.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-check mr-2"></i>সফলভাবে জমা হয়েছে!';
+                    button.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'bg-green-600', 'hover:bg-green-700', 'bg-purple-600', 'hover:bg-purple-700', 'bg-yellow-400', 'hover:bg-yellow-500');
+                    button.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        button.classList.remove('bg-green-500');
+                        if (button.classList.contains('text-gray-900')) {
+                            button.classList.add('bg-yellow-400', 'hover:bg-yellow-500');
+                        } else if (originalText.includes('আইডিয়া')) {
+                            button.classList.add('bg-green-600', 'hover:bg-green-700');
+                        } else if (originalText.includes('ভোট')) {
+                            button.classList.add('bg-purple-600', 'hover:bg-purple-700');
+                        } else {
+                            button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                        }
+                        
+                        // Reset form
+                        this.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // File upload handling
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            const dropZone = input.closest('.border-dashed');
+            
+            if (dropZone) {
+                // Click to select
+                dropZone.addEventListener('click', () => input.click());
+                
+                // Drag and drop
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('border-blue-500', 'bg-blue-50');
+                });
+                
+                dropZone.addEventListener('dragleave', () => {
+                    dropZone.classList.remove('border-blue-500', 'bg-blue-50');
+                });
+                
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-blue-500', 'bg-blue-50');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        updateFileName(input, files[0].name);
+                    }
+                });
+                
+                // File selection change
+                input.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        updateFileName(input, e.target.files[0].name);
+                    }
+                });
+            }
+        });
+
+        function updateFileName(input, fileName) {
+            const dropZone = input.closest('.border-dashed');
+            const textElement = dropZone.querySelector('p:first-of-type');
+            textElement.textContent = `নির্বাচিত ফাইল: ${fileName}`;
+            textElement.classList.add('text-green-600', 'font-medium');
+        }
+
+        // Floating button action
+        const floatingBtn = document.getElementById('floating-btn');
+        floatingBtn.addEventListener('click', () => {
+            document.querySelector('#voice').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Login button functionality
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click', () => {
+            alert('লগইন ফিচার শীঘ্রই আসছে! Login feature coming soon!');
+        });
+
+        // Problem card click effects
+        const problemCards = document.querySelectorAll('.problem-card');
+        problemCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
 </html>
 
