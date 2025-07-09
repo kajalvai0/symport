@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>যোগাযোগ করুন | আমার এমপি</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white p-4 text-center">
+    <h1 class="text-2xl font-bold">যোগাযোগ করুন</h1>
+    <nav class="mt-2">
+      <a href="index.html" class="mx-2 hover:underline">হোম</a>
+      <a href="about.html" class="mx-2 hover:underline">আমার সম্পর্কে</a>
+      <a href="services.html" class="mx-2 hover:underline">সেবা</a>
+      <a href="area.html" class="mx-2 hover:underline">আমার এলাকা</a>
+    </nav>
+  </header>
+
+  <!-- Contact Info -->
+  <section class="max-w-4xl mx-auto p-6 mt-8 bg-white rounded-xl shadow">
+    <h2 class="text-lg font-bold mb-4 text-center">অফিস ঠিকানা ও যোগাযোগ মাধ্যম</h2>
+    <ul class="text-sm list-disc ml-6">
+      <li>📍 ঠিকানা: এমপি কার্যালয়, সদর উপজেলা, নওগাঁ</li>
+      <li>📞 মোবাইল: ০১৭xxxxxxxx</li>
+      <li>📧 ইমেইল: amar.mp@email.com</li>
+    </ul>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4 text-center">যোগাযোগ ফর্ম</h3>
+    <form id="contactForm">
+      <div class="mb-4">
+        <label class="block mb-1 font-semibold">আপনার নাম:</label>
+        <input type="text" name="name" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div class="mb-4">
+        <label class="block mb-1 font-semibold">আপনার ইমেইল:</label>
+        <input type="email" name="email" required class="w-full border rounded px-3 py-2">
+      </div>
+      <div class="mb-4">
+        <label class="block mb-1 font-semibold">বার্তা:</label>
+        <textarea name="message" required class="w-full border rounded px-3 py-2 h-32"></textarea>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">পাঠান</button>
+    </form>
+    <p id="responseMsg" class="mt-4 text-green-600 font-semibold hidden">✅ বার্তা সফলভাবে পাঠানো হয়েছে!</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-700 text-white text-center py-4 mt-10">
+    <p>&copy; ২০২৫ আমার এমপি | আরএসটিএস-বিডি</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const responseMsg = document.getElementById("responseMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbyPkdl7ba3H9Tkvl4PhIZ-V4RqcwdcLWVC8nv4OscG1kxjf6-2BAesv7GzsTwIvfGLUCQ/exec", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(res => res.text())
+      .then(data => {
+        responseMsg.classList.remove("hidden");
+        form.reset();
+      })
+      .catch(err => alert("❌ বার্তা পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।"));
+    });
+  </script>
+
+</body>
+</html>
